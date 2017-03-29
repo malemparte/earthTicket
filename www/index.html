@@ -1,0 +1,374 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+  <script src="lib/onsenui/js/angular-onsenui.min.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    ons.bootstrap()
+      .controller('AppController', function($scope) {
+        this.load = function(page) {
+          $scope.splitter.content.load(page);
+          $scope.splitter.left.close();
+        };
+
+        this.toggle = function() {
+          $scope.splitter.left.toggle();
+        };
+      });
+
+    ons.ready(function() {
+        console.log("Onsen UI is ready!");
+    });
+  </script>
+  
+  
+    <style>
+.login-form {
+  text-align: center;
+  width: 80%;
+  margin: 60px auto 0;
+}
+
+input[type=email], input[type=password] {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  outline: none;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.login-button {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.forgot-password {
+  display: block;
+  margin: 8px auto 0 auto;
+  font-size: 14px;
+}
+</style>
+  
+</head>
+<body>
+
+  <ons-splitter ng-controller="AppController as app" var="splitter">
+    <ons-splitter-side side="left" width="220px" collapse swipeable>
+      <ons-page>
+        <ons-list>
+          <ons-list-item ng-click="app.load('home.html')" tappable>
+            Login
+          </ons-list-item>
+          <ons-list-item ng-click="app.load('concert-list.html')" tappable>
+            Concerts
+          </ons-list-item>
+            <ons-list-item ng-click="app.load('cocert-checkOut.html')" tappable>
+            Cart(2)
+          </ons-list-item>
+        </ons-list>
+      </ons-page>
+    </ons-splitter-side>
+    <ons-splitter-content page="home.html"></ons-splitter-content>
+  </ons-splitter>
+
+  <ons-template id="home.html">
+    <ons-page>
+      <ons-toolbar modifier="transparent">
+        <div class="center">
+          LOGO
+        </div>
+      </ons-toolbar>
+      <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+        
+        <div class="login-form">
+           <ons-button modifier="large" class="login-button">Connect with facebook</ons-button>
+            <br><br>
+            <input type="email" class="text-input--underbar" placeholder="Email" value="">
+            <input type="password" class="text-input--underbar" placeholder="Password" value="">
+            <br><br>
+            <ons-button modifier="large" class="login-button">Log In</ons-button>
+            <br>
+            <ons-button modifier="quiet" class="forgot-password">Forgot password?</ons-button>
+            <br>
+            <ons-button modifier="quiet" class="forgot-password" ng-click="app.load('concert-list.html')">Skip Login</ons-button>    
+       </div>    
+      </p>
+    </ons-page>
+  </ons-template>
+  
+  
+  
+  
+  
+  <!-- LISTA DE EVENTOS-->
+  
+  <ons-template id="concert-list.html">
+    <ons-page>
+      <ons-toolbar modifier="transparent">
+        <!--div class="left">
+          <ons-toolbar-button ng-click="app.toggle()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div-->
+        <div class="center">
+          LOGO
+        </div>
+      </ons-toolbar>
+      
+      <p>Lista de conciertos por ordenados por fecha ( Upcoming Events)</p>
+      <p> entonces como lo habia pensado : esta pantalla tiene que mostrar un carrusel full screen con los 5 conciertos que se aproximan. Y el ultimo item(el 6) del carrusel es una lista hacia abajo de los conciertos restantes.
+      <p> cuando se esta en el item full screen(los 5 primeros) debera existir un boton para que se pueda ir al detalle del concierto y poder realizar la compra.</p>
+      
+      
+         <ul class="list">
+         
+  <li class="list__item" >
+    <div class="list__item__left">
+     <img class="list__item__thumbnail" src="img/event1.JPG">
+    </div>
+
+    <div class="list__item__center" ng-click="app.load('event-detail-1.html')">
+      <div class="list__item__title">ARISE</div>
+         <div class="list__item__subtitle">Music Festival. Agoust 4-6, 2017</div>
+      <div class="list__item__subtitle">Sunrise Ranch. Loveland CO </div>
+    </div>
+     
+     <div class="list__item__right">
+      <div class="list__item__label"></div>
+    </div> 
+  </li>
+  
+  
+    <li class="list__item" >
+    <div class="list__item__left">
+     <img class="list__item__thumbnail" src="img/event2.JPG">
+    </div>
+
+    <div class="list__item__center" ng-click="app.load('event-detail-2.html')">
+      <div class="list__item__title">RISING APPALACHIA</div>
+         <div class="list__item__subtitle">MAY 27, 2017</div>
+    </div>
+     
+     <div class="list__item__right">
+      <div class="list__item__label"></div>
+    </div> 
+  </li>
+  
+  <li class="list__item" >
+    <div class="list__item__left">
+     <img class="list__item__thumbnail" src="img/event3.JPG">
+    </div>
+
+    <div class="list__item__center" ng-click="app.load('event-detail-3.html')">
+      <div class="list__item__title">ENCHANTED FOREST</div>
+         <div class="list__item__subtitle">JUNE 9-11, 2017 - Black Oak Ranch, CA</div>
+    </div>
+     
+     <div class="list__item__right">
+      <div class="list__item__label"></div>
+    </div> 
+  </li>
+  
+  <li class="list__item" >
+    <div class="list__item__left">
+     <img class="list__item__thumbnail" src="img/event4.JPG">
+    </div>
+
+    <div class="list__item__center" ng-click="app.load('event-detail-4.html')">
+      <div class="list__item__title">MATISYAHU</div>
+         <div class="list__item__subtitle">MAY 26, 2017</div>
+    </div>
+     
+     <div class="list__item__right">
+      <div class="list__item__label"></div>
+    </div> 
+  </li>
+</ul>
+    </ons-page>
+  </ons-template>
+
+
+
+
+
+
+
+
+
+
+<!-- DETALLE CONCIERTOS -->
+
+<!-- event 1 -->
+  <ons-template id="event-detail-1.html">
+    <ons-page>
+            <ons-toolbar modifier="transparent">
+    <div class="left">
+      <ons-toolbar-button><ons-icon icon="ion-arrow-left-c" fixed-width="false"  ng-click="app.load('concert-list.html')"></ons-icon></ons-toolbar-button>
+    </div>
+    
+     <div class="center">
+          LOGO
+        </div>
+        
+  </ons-toolbar>
+        <img src="img/event1.JPG" style="margin: auto; width: 100%">
+        <p>Arrise</p>
+        <p>Music Festival - August 4-6. 2017</p>
+        <p>Sunrise Ranch - Loveland CO</p>
+        <p>Event description.......</p>
+  <ons-button ng-click="app.load('cocert-checkOut.html')">Check out</ons-button>
+    </ons-page>
+  </ons-template>
+  
+  
+  <!-- event 2 -->
+  
+  <ons-template id="event-detail-2.html">
+    <ons-page>
+       <ons-toolbar modifier="transparent">
+    <div class="left">
+      <ons-toolbar-button><ons-icon icon="ion-arrow-left-c" fixed-width="false"  ng-click="app.load('concert-list.html')"></ons-icon></ons-toolbar-button>
+    </div>
+    
+     <div class="center">
+          LOGO
+        </div>
+  </ons-toolbar>
+      <img src="img/event2.JPG" style="margin: auto; width: 100%">
+        <p>RISING APPALACHIA</p>
+        <p>MAY 27, 2017</p>
+        <p>California Roots</p>
+         <p>Event description.......</p>
+  <ons-button ng-click="app.load('cocert-checkOut.html')">Check Out</ons-button>
+    </ons-page>
+  </ons-template>
+  
+  <!-- event 3 -->
+  
+  <ons-template id="event-detail-3.html">
+    <ons-page>
+       <ons-toolbar modifier="transparent">
+    <div class="left">
+      <ons-toolbar-button><ons-icon icon="ion-arrow-left-c" fixed-width="false"  ng-click="app.load('concert-list.html')"></ons-icon></ons-toolbar-button>
+    </div>
+    
+     <div class="center">
+          LOGO
+        </div>
+  </ons-toolbar>
+      <img src="img/event3.JPG" style="margin: auto; width: 100%">
+      <p>ENCHANTED FOREST</p>
+        <p>JUNE 9-11. 2017</p>
+        <p>Black Oak Ranch, CA</p>
+         <p>Event description.......</p>
+  <ons-button ng-click="app.load('cocert-checkOut.html')">Check out</ons-button>
+    </ons-page>
+  </ons-template>
+  
+  <!-- event 4 -->
+  
+  <ons-template id="event-detail-4.html">
+    <ons-page>
+       <ons-toolbar modifier="transparent">
+    <div class="left">
+      <ons-toolbar-button><ons-icon icon="ion-arrow-left-c" fixed-width="false"  ng-click="app.load('concert-list.html')"></ons-icon></ons-toolbar-button>
+    </div>
+    
+     <div class="center">
+          LOGO
+        </div>
+  </ons-toolbar>
+      <img src="img/event4.JPG" style="margin: auto; width: 100%">
+        <p>MATISYAHU</p>
+        <p>MAY 26, 2017</p>
+         <p>Event description.......</p>
+  <ons-button ng-click="app.load('cocert-checkOut.html')">Check out</ons-button>
+    </ons-page>
+  </ons-template>
+  
+  
+  
+  
+  
+  
+  <!-- CHECK OUT HTML-->
+  
+  <ons-template id="cocert-checkOut.html">
+    <ons-page>
+       <ons-toolbar modifier="transparent">
+        <!--div class="left">
+          <ons-toolbar-button ng-click="app.toggle()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div-->
+        
+          
+        
+        <div class="center">
+          LOGO
+        </div>
+      </ons-toolbar>
+      <p>Lets Check out</p>
+      
+      
+      <ul class="list">
+  <li class="list__item">
+    <div class="list__item__left">
+     <img class="list__item__thumbnail" src="img/event1.JPG">
+    </div>
+
+    <div class="list__item__center">
+      <div class="list__item__title">ARISE</div>
+         <div class="list__item__subtitle">Items 4 </div>
+      <div class="list__item__subtitle">Subtotal: $120.00</div>
+    </div>
+     
+     <div class="list__item__right">
+      <div class="list__item__label"><button modifier="quiet">+</button> <button modifier="quiet">-</button>  <button modifier="quiet">X</button> </div>
+    </div> 
+  </li>
+
+  <li class="list__item">
+    <div class="list__item__left">
+      <img class="list__item__thumbnail" src="img/event4.JPG">
+    </div>
+
+    <div class="list__item__center">
+      <div class="list__item__title">MATISYAHU</div>
+      <div class="list__item__subtitle">Items 2 </div>
+      <div class="list__item__subtitle">subtotal: $45.00 </div>
+    </div>
+    
+     <div class="list__item__right">
+      <div class="list__item__label"><button modifier="quiet">+</button> <button modifier="quiet">-</button>  <button modifier="quiet">X</button> </div>
+    </div> 
+    
+  </li>
+  
+   <li class="list__item">
+    <div class="list__item__center">
+      <div class="list__item__title">Total: $165.00</div>
+
+    </div>    
+  </li>
+  
+</ul>
+      <p>Payment form pending...</p>
+        <ons-button ng-click="app.load('cocert-checkOut.html')">Pay Now</ons-button>
+        <ons-button modifier="quiet"ng-click="app.load('concert-list.html')">Iam not done!</ons-button>
+    </ons-page>
+  </ons-template>
+</body>
+</html>
