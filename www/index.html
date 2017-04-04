@@ -25,10 +25,20 @@
         this.toggle = function() {
           $scope.splitter.left.toggle();
         };
+
+        
       });
 
     ons.ready(function() {
-        console.log("Onsen UI is ready!");
+        
+        
+        ons.createPopover('event-detail-1.html').then(function(popover) {
+      $scope.popover = popover;
+    });
+    
+    
+    $scope.options = ['Load', 'Sync', 'Settings'];
+        
     });
   </script>
   
@@ -208,7 +218,7 @@ input[type=email], input[type=password] {
 
 
 
-<!-- DETALLE CONCIERTOS -->
+<!-- DETALLE CONCIERTOS SON TRES EVENTOS ESTATICOS -->
 
 <!-- event 1 -->
   <ons-template id="event-detail-1.html">
@@ -228,7 +238,11 @@ input[type=email], input[type=password] {
         <p>Music Festival - August 4-6. 2017</p>
         <p>Sunrise Ranch - Loveland CO</p>
         <p>Event description.......</p>
-  <ons-button ng-click="app.load('cocert-checkOut.html')">Check out</ons-button>
+        
+        
+    <ons-toolbar-button ng-click="popover.show($event)"><ons-icon icon="ion-navicon"></ons-icon></ons-toolbar-button>
+      <ons-button ng-click="app.load('cocert-checkOut.html')">ADD CART</ons-button>
+      <ons-button ng-click="app.load('cocert-checkOut.html')">Check out</ons-button>
     </ons-page>
   </ons-template>
   
@@ -370,5 +384,34 @@ input[type=email], input[type=password] {
         <ons-button modifier="quiet"ng-click="app.load('concert-list.html')">Iam not done!</ons-button>
     </ons-page>
   </ons-template>
+  
+  
+  
+  <!-- combo box --->
+  
+  
+  <ons-template id="popover.html">
+  <ons-popover cancelable direction="down">
+    <ons-list>
+      <ons-list-item  modifier="tappable">
+        11111
+      </ons-list-item>
+      
+       <ons-list-item  modifier="tappable">
+        11111
+      </ons-list-item>
+      
+      
+       <ons-list-item  modifier="tappable">
+        11111
+      </ons-list-item>
+      
+    </ons-list>
+  </ons-popover>
+</ons-template>
+  
+  
+  
+  
 </body>
 </html>
